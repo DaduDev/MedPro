@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { useToast } from "@/components/ui/use-toast"
+// import { useToast } from "@/components/ui/use-toast"
 import { Loader2, Camera } from 'lucide-react'
 import CameraCapture from './components/CameraCapture'
 import AlternativeMedicines from './components/AlternativeMedicines'
@@ -14,35 +14,35 @@ export default function Home() {
   const [inputMedicine, setInputMedicine] = useState('')
   const [showCamera, setShowCamera] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { toast } = useToast()
+  // const { toast } = useToast()
 
   const handleCameraCapture = async (imageData: string) => {
     setShowCamera(false)
-    toast({
-      title: "Image captured",
-      description: "Processing prescription image...",
-    })
+    // toast({
+    //   title: "Image captured",
+    //   description: "Processing prescription image...",
+    // })
     
     // In a real application, you would send this image to your backend for processing
     // For now, we'll simulate the response
     setTimeout(() => {
       const simulatedMedicine = 'Paracetamol'
       setCurrentMedicine(simulatedMedicine)
-      toast({
-        title: "Image Processed",
-        description: `Detected medicine: ${simulatedMedicine}`,
-      })
-    }, 2000) // Simulate a 2-second processing time
-  }
+    //   toast({
+    //     title: "Image Processed",
+    //     description: `Detected medicine: ${simulatedMedicine}`,
+    //   })
+    // }, 2000) // Simulate a 2-second processing time
+  })}
 
   const handleInputSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!inputMedicine.trim()) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Please enter a medicine name",
-      })
+      // toast({
+      //   variant: "destructive",
+      //   title: "Error",
+      //   description: "Please enter a medicine name",
+      // })
       return
     }
 
@@ -60,16 +60,16 @@ export default function Home() {
 
       setCurrentMedicine(inputMedicine)
       setInputMedicine('')
-      toast({
-        title: "Success",
-        description: "Medicine added successfully",
-      })
+      // toast({
+      //   title: "Success",
+      //   description: "Medicine added successfully",
+      // })
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to add medicine",
-      })
+      // toast({
+      //   variant: "destructive",
+      //   title: "Error",
+      //   description: error instanceof Error ? error.message : "Failed to add medicine",
+      // })
     } finally {
       setIsSubmitting(false)
     }
@@ -119,4 +119,3 @@ export default function Home() {
     </main>
   )
 }
-
