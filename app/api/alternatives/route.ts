@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server'
 import { MongoClient } from 'mongodb'
 
 const uri = process.env.MONGODB_URI
+if (!uri) {
+  throw new Error('MONGODB_URI is not defined')
+}
+
 const client = new MongoClient(uri, {
   serverSelectionTimeoutMS: 5000, // 5 seconds timeout
 })
@@ -53,7 +57,7 @@ export async function GET(request: Request) {
     }
   } catch (error) {
     console.error('Error fetching data from MongoDB:', error)
-    if (error.name === 'MongoServerSelectionError') {
+    if ((error as Error).name === 'MongoServerSelectionError') {
       return NextResponse.json(
         { error: 'Database connection timeout. Please try again later.' }, 
         { status: 504 }
