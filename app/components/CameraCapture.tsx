@@ -3,7 +3,7 @@
 import { useRef, useState, useCallback } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { toast } from "@/components/ui/use-toast"
+// import { toast } from "@/components/ui/use-toast"
 import { Camera, CameraIcon as FlipCamera, X } from 'lucide-react'
 
 interface CameraCaptureProps {
@@ -29,11 +29,11 @@ export default function CameraCapture({ onCapture, onClose }: CameraCaptureProps
       }
     } catch (err) {
       console.error("Error accessing the camera", err)
-      toast({
-        variant: "destructive",
-        title: "Camera Error",
-        description: "Unable to access the camera. Please check your permissions.",
-      })
+      // toast({
+      //   variant: "destructive",
+      //   title: "Camera Error",
+      //   description: "Unable to access the camera. Please check your permissions.",
+      // })
     }
   }, [facingMode])
 
